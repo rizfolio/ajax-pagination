@@ -7,28 +7,31 @@ Make any pagination AJAX without changing anything.
 
 - include javascript file
 
-- Define following options:
+### Define following options:
 
-- Wrapper for record table or list
+``` js
+// Wrapper for record table or list
 
-    tableBody: '.data_tbody'
+tableBody: '.data_tbody'
     
     
-- Wrapper for wrapper for pagination links
+// Wrapper for wrapper for pagination links
 
-    paginationWrapper: '.pagination_wrapper'
+paginationWrapper: '.pagination_wrapper'
     
     
-- link class for pagination link
+// link class for pagination link
 
 
-    paginationLink: '.pagination_link'
+paginationLink: '.pagination_link'
 
+
+// complete call
 
 ajaxPagination({ tableBody:'.body_cont', paginationLink:'.page-link',  paginationWrapper :'.pagination_wrapper', });
 
 
-
+```
 
 
 
