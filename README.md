@@ -5,7 +5,7 @@ Make any pagination AJAX without changing anything.
 
 ## How to setup
 
-- include javascript file
+
 
 ### Define following options:
 
