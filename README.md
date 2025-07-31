@@ -1,7 +1,6 @@
 # Ajax Pagination
+
 Make any pagination AJAX without changing anything.
-
-
 
 ## How to setup
 
@@ -9,28 +8,55 @@ Make any pagination AJAX without changing anything.
 
 ### Define following options:
 
-``` js
+```js
 // Wrapper for record table or list
-
 tableBody: '.data_tbody'
-    
-    
-// Wrapper for wrapper for pagination links
 
+// Wrapper for pagination links
 paginationWrapper: '.pagination_wrapper'
-    
-    
-// link class for pagination link
 
-
+// Link class for pagination link
 paginationLink: '.pagination_link'
 
+// CSS class added during loading (optional)
+loadingClass: 'ajax-pagination-loading'
 
-// complete call
+// Disable pagination links during loading (optional)
+disableLinksOnLoad: true
 
-ajaxPagination({ tableBody:'.body_cont', paginationLink:'.page-link',  paginationWrapper :'.pagination_wrapper', });
+// Complete call
+ajaxPagination({ 
+    tableBody: '.body_cont', 
+    paginationLink: '.page-link',  
+    paginationWrapper: '.pagination_wrapper',
+    loadingClass: 'my-loading-class',
+    disableLinksOnLoad: true
+});
+```
 
+### Loading State
 
+Ajax Pagination includes built-in loading state management:
+
+- **Loading Class**: A CSS class is automatically added to both the table body and pagination wrapper during AJAX requests
+- **Link Disabling**: Pagination links are temporarily disabled during loading to prevent multiple simultaneous requests
+- **Customizable**: Both features can be configured or disabled via options
+
+**Default loading CSS class:**
+```css
+.ajax-pagination-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Add your own loading spinner */
+.ajax-pagination-loading::after {
+    content: "Loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 ```
 
 ### Data Table HTML "body_cont"
@@ -96,12 +122,18 @@ ajaxPagination({ tableBody:'.body_cont', paginationLink:'.page-link',  paginatio
 ```
 ## Browser support
 
-Ajax Pagination works with all modern browsers. It doesn't work with Internet Explorer.
+Ajax Pagination works with all modern browsers that support:
+- ES6 features (spread operator, const/let)
+- Fetch API
+- DOMParser
 
+**Minimum browser versions:**
+- Chrome 45+
+- Firefox 34+
+- Safari 10+
+- Edge 12+
 
-
-
-
+**Note:** Does not work with Internet Explorer. For IE support, consider using polyfills for fetch API and ES6 features.
 
 ---
 
