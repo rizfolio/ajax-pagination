@@ -1,7 +1,6 @@
 # Ajax Pagination
+
 Make any pagination AJAX without changing anything.
-
-
 
 ## How to setup
 
@@ -9,28 +8,22 @@ Make any pagination AJAX without changing anything.
 
 ### Define following options:
 
-``` js
+```js
 // Wrapper for record table or list
-
 tableBody: '.data_tbody'
-    
-    
-// Wrapper for wrapper for pagination links
 
+// Wrapper for pagination links
 paginationWrapper: '.pagination_wrapper'
-    
-    
-// link class for pagination link
 
-
+// Link class for pagination link
 paginationLink: '.pagination_link'
 
-
-// complete call
-
-ajaxPagination({ tableBody:'.body_cont', paginationLink:'.page-link',  paginationWrapper :'.pagination_wrapper', });
-
-
+// Complete call
+ajaxPagination({ 
+    tableBody: '.body_cont', 
+    paginationLink: '.page-link',  
+    paginationWrapper: '.pagination_wrapper' 
+});
 ```
 
 ### Data Table HTML "body_cont"
@@ -96,12 +89,18 @@ ajaxPagination({ tableBody:'.body_cont', paginationLink:'.page-link',  paginatio
 ```
 ## Browser support
 
-Ajax Pagination works with all modern browsers. It doesn't work with Internet Explorer.
+Ajax Pagination works with all modern browsers that support:
+- ES6 features (spread operator, const/let)
+- Fetch API
+- DOMParser
 
+**Minimum browser versions:**
+- Chrome 45+
+- Firefox 34+
+- Safari 10+
+- Edge 12+
 
-
-
-
+**Note:** Does not work with Internet Explorer. For IE support, consider using polyfills for fetch API and ES6 features.
 
 ---
 
