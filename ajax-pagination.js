@@ -16,7 +16,9 @@ var ajaxPagination = (function () {
         var defaultOptions = {
             tableBody: '.data_tbody',
             paginationWrapper: '.pagination_wrapper',
-            paginationLink: '.pagination_link'
+            paginationLink: '.pagination_link',
+            loadingClass: 'ajax-pagination-loading',
+            disableLinksOnLoad: true
         }
 
         // Validate options parameter
@@ -54,6 +56,27 @@ var ajaxPagination = (function () {
             if (!paginationHref || paginationHref === '#') {
                 return;
             }
+
+            // Start loading state
+            const targetTableBody = document.querySelector(options.tableBody);
+            const targetPaginationWrapper = document.querySelector(options.paginationWrapper);
+            const allPaginationLinks = document.querySelectorAll(options.paginationLink);
+
+            // Add loading class to table body and pagination wrapper
+            if (targetTableBody && options.loadingClass) {
+                targetTableBody.classList.add(options.loadingClass);
+            }
+            if (targetPaginationWrapper && options.loadingClass) {
+                targetPaginationWrapper.classList.add(options.loadingClass);
+            }
+
+            // Disable pagination links if option is enabled
+            if (options.disableLinksOnLoad) {
+                allPaginationLinks.forEach(link => {
+                    link.style.pointerEvents = 'none';
+                    link.setAttribute('aria-disabled', 'true');
+                });
+            }
             
             fetch(paginationHref, {
                     method: 'GET',
@@ -86,6 +109,28 @@ var ajaxPagination = (function () {
                 })
                 .catch((error) => {
                     console.error('Ajax Pagination Error:', error);
+                })
+                .finally(() => {
+                    // End loading state
+                    const currentTableBody = document.querySelector(options.tableBody);
+                    const currentPaginationWrapper = document.querySelector(options.paginationWrapper);
+                    const currentPaginationLinks = document.querySelectorAll(options.paginationLink);
+
+                    // Remove loading class
+                    if (currentTableBody && options.loadingClass) {
+                        currentTableBody.classList.remove(options.loadingClass);
+                    }
+                    if (currentPaginationWrapper && options.loadingClass) {
+                        currentPaginationWrapper.classList.remove(options.loadingClass);
+                    }
+
+                    // Re-enable pagination links
+                    if (options.disableLinksOnLoad) {
+                        currentPaginationLinks.forEach(link => {
+                            link.style.pointerEvents = '';
+                            link.removeAttribute('aria-disabled');
+                        });
+                    }
                 });
 
         }, false);

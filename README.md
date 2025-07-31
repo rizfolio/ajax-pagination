@@ -18,12 +18,45 @@ paginationWrapper: '.pagination_wrapper'
 // Link class for pagination link
 paginationLink: '.pagination_link'
 
+// CSS class added during loading (optional)
+loadingClass: 'ajax-pagination-loading'
+
+// Disable pagination links during loading (optional)
+disableLinksOnLoad: true
+
 // Complete call
 ajaxPagination({ 
     tableBody: '.body_cont', 
     paginationLink: '.page-link',  
-    paginationWrapper: '.pagination_wrapper' 
+    paginationWrapper: '.pagination_wrapper',
+    loadingClass: 'my-loading-class',
+    disableLinksOnLoad: true
 });
+```
+
+### Loading State
+
+Ajax Pagination includes built-in loading state management:
+
+- **Loading Class**: A CSS class is automatically added to both the table body and pagination wrapper during AJAX requests
+- **Link Disabling**: Pagination links are temporarily disabled during loading to prevent multiple simultaneous requests
+- **Customizable**: Both features can be configured or disabled via options
+
+**Default loading CSS class:**
+```css
+.ajax-pagination-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Add your own loading spinner */
+.ajax-pagination-loading::after {
+    content: "Loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 ```
 
 ### Data Table HTML "body_cont"
