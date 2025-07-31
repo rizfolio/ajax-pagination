@@ -19,6 +19,12 @@ var ajaxPagination = (function () {
             paginationLink: '.pagination_link'
         }
 
+        // Validate options parameter
+        if (!options || typeof options !== 'object') {
+            console.error('Ajax Pagination: options parameter must be an object');
+            return;
+        }
+
         options = {
             ...defaultOptions,
             ...options
@@ -45,7 +51,7 @@ var ajaxPagination = (function () {
             event.preventDefault();
 
             const paginationHref = event.target.getAttribute('href');
-            if (!paginationHref) {
+            if (!paginationHref || paginationHref === '#') {
                 return;
             }
             
